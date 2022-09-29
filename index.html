@@ -2,45 +2,159 @@
 <html lang="en">
   <head>
     <title>Weather App</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
     <!-- Bootstrap CSS -->
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous"
     />
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <input type="text" id="city" class="col-8" />
-        <button>click</button>
-      </div>
-    </div>
+      <!-- HEADER -->
+      <header class="row col-12">
+        <h1>Weather App</h1>
+        <p>Get the latest temperature numbers</p>
+      </header>
+      <!-- END OF HEADER -->
 
+      <!-- INPUT -->
+      <section class="row col-md-6 col-sm-10 col-12">
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            id="city"
+            class="form-control"
+            placeholder="enter city name"
+            aria-label="enter city name"
+            aria-describedby="button"
+          />
+          <button class="btn btn-outline-secondary" type="button" id="button">
+            Submit
+          </button>
+        </div>
+
+        <div class="history-container">
+          <button type="button">
+            View previous searches
+          </button>
+          <article class="history-component">
+            <p>city 1</p>
+          </article>
+        </div>
+      </section>
+      <!-- END OF INPUT -->
+
+      <!-- 1 DAY WEATHER INFO -->
+      <section class="card col-6">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="card-title-container">
+              <h3 class="card-title" id="cityName">Toronto</h3>
+              <p class="card-subtitle text-muted fs-6 text" id="currentDate">Wednesday, September 29, 2022</p>
+            </div>
+
+            <i class="card-icon" id="icon">[ ]</i>
+
+            <p class="fs-1 text" id="currentTemp">15℃</p>
+          </div>
+
+          <p class="card-text" id="cardDesc">Some clouds</p>
+        </div>
+        <footer class="card-footer d-flex justify-content-between">
+          <div>
+            <h5 class="card-title">Humidity</h5>
+            <h6 class="card-subtitle" id="humidity">100</h6>
+          </div>
+          <div>
+            <h5 class="card-title">Winds</h5>
+            <h6 class="card-subtitle" id="winds">100</h6>
+          </div>
+          <div>
+            <h5 class="card-title">Feels like</h5>
+            <h6 class="card-subtitle" id="tempFeelsLike">100</h6>
+          </div>
+        </foot>
+      </section>
+      <!-- END OF 1 DAY WEATHER INFO -->
+
+      <!-- 5 DAY WEATHER INFO -->
+      <section class="mt-5">
+        <div class="card-group">
+          <div class="card">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <div class="card-body">
+              <h5 class="card-title">Sept. 30, 2022</h5>
+              <p class="card-text">Min: 11℃</p> 
+              <p class="card-text">Max: 16℃</p> 
+              <p class="card-text">Wind: 10MPH</p> 
+              <p class="card-text">Humidity: 55</p> 
+            </div>
+          </div>
+          <div class="card">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <div class="card-body">
+              <h5 class="card-title">Sept. 30, 2022</h5>
+              <p class="card-text">Min: 11℃</p> 
+              <p class="card-text">Max: 16℃</p> 
+              <p class="card-text">Wind: 10MPH</p> 
+              <p class="card-text">Humidity: 55</p> 
+            </div>
+          </div>
+          <div class="card">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <div class="card-body">
+              <h5 class="card-title">Sept. 30, 2022</h5>
+              <p class="card-text">Min: 11℃</p> 
+              <p class="card-text">Max: 16℃</p> 
+              <p class="card-text">Wind: 10MPH</p> 
+              <p class="card-text">Humidity: 55</p> 
+            </div>
+          </div>
+          <div class="card">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <div class="card-body">
+              <h5 class="card-title">Sept. 30, 2022</h5>
+              <p class="card-text">Min: 11℃</p> 
+              <p class="card-text">Max: 16℃</p> 
+              <p class="card-text">Wind: 10MPH</p> 
+              <p class="card-text">Humidity: 55</p> 
+            </div>
+          </div>
+          <div class="card">
+            <!-- <img src="..." class="card-img-top" alt="..."> -->
+            <div class="card-body">
+              <h5 class="card-title">Sept. 30, 2022</h5>
+              <p class="card-text">Min: 11℃</p> 
+              <p class="card-text">Max: 16℃</p> 
+              <p class="card-text">Wind: 10MPH</p> 
+              <p class="card-text">Humidity: 55</p> 
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <!-- END OF 5 DAY WEATHER INFO -->
+    </div>
+    <!-- JavaScript Bundle with Popper -->
     <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
       crossorigin="anonymous"
     ></script>
     <script src="./app.js"></script>
   </body>
 </html>
+
+<!-- feels_like: 13.14 ​​​ 
+            humidity: 55 ​​​ 
+            temp: 14.23
+          ​​​ temp_max: 16.38 ​​​ 
+          temp_min: 13.44 -->
