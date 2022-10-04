@@ -3,6 +3,8 @@ let weatherInfoData = []
 const value = document.querySelector('#city')
 const btn = document.querySelector('button')
 let city
+const today = moment()
+const currentCalendarDay = today.format('dddd MMMM Do YYYY')
 
 // EVENTS
 // default load info for Toronto
@@ -29,7 +31,6 @@ function getData(city) {
     .then((response) => response.json())
     .then((data) => {
       weatherInfoData.push(data)
-      console.log(weatherInfoData)
       displayIcon(weatherInfoData)
       displayText(weatherInfoData)
       displayForecastInfo(weatherInfoData)
@@ -56,6 +57,7 @@ function displayIcon(weatherArray) {
 function displayText(weatherArray) {
   const weatherArrayInfo = weatherArray[0]
   const cityName = document.querySelector('#cityName')
+  const currentDate = document.querySelector('#currentDate')
   const currentTemp = document.querySelector('#currentTemp')
   const cardDescription = document.querySelector('#cardDesc')
   const humidity = document.querySelector('#humidity')
@@ -63,6 +65,7 @@ function displayText(weatherArray) {
   const tempFeelsLike = document.querySelector('#tempFeelsLike')
 
   cityName.textContent = weatherArrayInfo.name
+  currentDate.textContent = currentCalendarDay
   currentTemp.textContent = `${Math.floor(weatherArrayInfo.main.temp)}℃`
   cardDescription.textContent = weatherArrayInfo.weather[0].description
 
@@ -76,8 +79,13 @@ function displayForecastInfo(weatherArray) {
 
   const weatherArrayInfo = weatherArray[0]
 
-  forecastCards.forEach((card) => {
-    card.children[0].textContent = 'new date'
+  // starting point number for purposes of moment.js methods
+  const startingPoint = moment().day()
+
+  forecastCards.forEach((card, index) => {
+    card.children[0].textContent = `${moment()
+      .day(startingPoint + (index + 1))
+      .format('dddd MMMM Do YYYY')}`
     card.children[1].textContent = `Min: ${Math.floor(
       weatherArrayInfo.main.temp_min
     )}℃`
