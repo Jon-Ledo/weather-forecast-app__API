@@ -66,7 +66,7 @@ function displayText(weatherArray) {
   currentTemp.textContent = `${Math.floor(weatherArrayInfo.main.temp)}℃`
   cardDescription.textContent = weatherArrayInfo.weather[0].description
 
-  humidity.textContent = weatherArrayInfo.main.humidity
+  humidity.textContent = `${weatherArrayInfo.main.humidity}%`
   winds.textContent = `${weatherArrayInfo.wind.speed}MPH`
   tempFeelsLike.textContent = `${Math.floor(weatherArrayInfo.main.feels_like)}℃`
 }
@@ -85,6 +85,6 @@ function displayForecastInfo(weatherArray) {
       weatherArrayInfo.main.temp_max
     )}℃`
     card.children[3].textContent = `Wind: ${weatherArrayInfo.wind.speed}MPH`
-    card.children[4].textContent = `Humidity: ${weatherArrayInfo.main.humidity}`
+    card.children[4].textContent = `Humidity: ${weatherArrayInfo.main.humidity}%`
   })
 }
