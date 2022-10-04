@@ -4,7 +4,12 @@ const value = document.querySelector('#city')
 const btn = document.querySelector('button')
 let city
 
-// events
+// EVENTS
+// default load info for Toronto
+window.addEventListener('DOMContentLoaded', () => {
+  getData('Toronto')
+})
+
 btn.addEventListener('click', () => {
   city = getUserInput()
   getData(city)
@@ -12,6 +17,7 @@ btn.addEventListener('click', () => {
 
 // functions
 function getUserInput() {
+  const removeOldData = weatherInfoData.pop()
   const input = value.value
   return input
 }
@@ -24,6 +30,61 @@ function getData(city) {
     .then((data) => {
       weatherInfoData.push(data)
       console.log(weatherInfoData)
-      console.log(weatherInfoData[0].name)
+      displayIcon(weatherInfoData)
+      displayText(weatherInfoData)
+      displayForecastInfo(weatherInfoData)
     })
+}
+
+function displayIcon(weatherArray) {
+  const weatherArrayInfo = weatherArray[0].weather[0]
+  const icon = weatherArrayInfo.icon
+  const description = weatherArrayInfo.description
+  const iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`
+  const iconEl = document.querySelector('#icon')
+
+  // change main display
+  iconEl.innerHTML = `<img src="${iconURL}" alt="weather icon for ${description}" />`
+
+  // change for 5 day forecast
+  const forecastIcons = document.querySelectorAll('div.card i')
+  forecastIcons.forEach((forecastIcon) => {
+    forecastIcon.innerHTML = `<img src="${iconURL}" alt="weather icon for ${description}" />`
+  })
+}
+
+function displayText(weatherArray) {
+  const weatherArrayInfo = weatherArray[0]
+  const cityName = document.querySelector('#cityName')
+  const currentTemp = document.querySelector('#currentTemp')
+  const cardDescription = document.querySelector('#cardDesc')
+  const humidity = document.querySelector('#humidity')
+  const winds = document.querySelector('#winds')
+  const tempFeelsLike = document.querySelector('#tempFeelsLike')
+
+  cityName.textContent = weatherArrayInfo.name
+  currentTemp.textContent = `${Math.floor(weatherArrayInfo.main.temp)}℃`
+  cardDescription.textContent = weatherArrayInfo.weather[0].description
+
+  humidity.textContent = weatherArrayInfo.main.humidity
+  winds.textContent = `${weatherArrayInfo.wind.speed}MPH`
+  tempFeelsLike.textContent = `${Math.floor(weatherArrayInfo.main.feels_like)}℃`
+}
+
+function displayForecastInfo(weatherArray) {
+  const forecastCards = document.querySelectorAll('section.mt-5 div.card-body')
+
+  const weatherArrayInfo = weatherArray[0]
+
+  forecastCards.forEach((card) => {
+    card.children[0].textContent = 'new date'
+    card.children[1].textContent = `Min: ${Math.floor(
+      weatherArrayInfo.main.temp_min
+    )}℃`
+    card.children[2].textContent = `Max: ${Math.floor(
+      weatherArrayInfo.main.temp_max
+    )}℃`
+    card.children[3].textContent = `Wind: ${weatherArrayInfo.wind.speed}MPH`
+    card.children[4].textContent = `Humidity: ${weatherArrayInfo.main.humidity}`
+  })
 }
