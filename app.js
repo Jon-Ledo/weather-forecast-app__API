@@ -26,6 +26,7 @@ function getUserInput() {
 
 function getData(city) {
   const urlInput = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=c5d74192f81b74ae39527badb8dc8534&units=metric`
+  const forecastUrlInput = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c5d74192f81b74ae39527badb8dc8534&units=metric`
 
   fetch(urlInput)
     .then((response) => response.json())
@@ -33,7 +34,23 @@ function getData(city) {
       weatherInfoData.push(data)
       displayIcon(weatherInfoData)
       displayText(weatherInfoData)
-      displayForecastInfo(weatherInfoData)
+    })
+
+  fetch(forecastUrlInput)
+    .then((response) => response.json())
+    .then((forecastData) => {
+      console.log(forecastData)
+      const forecastArrayData = forecastData.list
+
+      const forecastArrayToDisplay = []
+      forecastArrayData.forEach((fc) => {
+        if (fc.dt_txt.includes('15:00:00')) {
+          forecastArrayToDisplay.push(fc)
+        }
+      })
+      console.log(forecastArrayToDisplay)
+      displayForecastInfo(forecastArrayToDisplay)
+      displayForecastIcons(forecastArrayToDisplay)
     })
 }
 
@@ -46,11 +63,18 @@ function displayIcon(weatherArray) {
 
   // change main display
   iconEl.innerHTML = `<img src="${iconURL}" alt="weather icon for ${description}" />`
+}
 
-  // change for 5 day forecast
+// change for 5 day forecast
+function displayForecastIcons(filteredWeatherArray) {
   const forecastIcons = document.querySelectorAll('div.card i')
-  forecastIcons.forEach((forecastIcon) => {
-    forecastIcon.innerHTML = `<img src="${iconURL}" alt="weather icon for ${description}" />`
+
+  forecastIcons.forEach((forecastIcon, index) => {
+    const weatherArrayInfo = filteredWeatherArray[index].weather[0]
+    const icon = weatherArrayInfo.icon
+    const iconURL = `https://openweathermap.org/img/wn/${icon}@2x.png`
+
+    forecastIcon.innerHTML = `<img src="${iconURL}" alt="weather icon for ${weatherArrayInfo.description}" />`
   })
 }
 
@@ -77,22 +101,25 @@ function displayText(weatherArray) {
 function displayForecastInfo(weatherArray) {
   const forecastCards = document.querySelectorAll('section.mt-5 div.card-body')
 
-  const weatherArrayInfo = weatherArray[0]
+  weatherArray.forEach((weatherArrayInfo, index) => {
+    // starting point number for purposes of moment.js methods
+    const startingPoint = moment().day()
 
-  // starting point number for purposes of moment.js methods
-  const startingPoint = moment().day()
-
-  forecastCards.forEach((card, index) => {
-    card.children[0].textContent = `${moment()
+    forecastCards[index].children[0].textContent = `${moment()
       .day(startingPoint + (index + 1))
       .format('dddd MMMM Do YYYY')}`
-    card.children[1].textContent = `Min: ${Math.floor(
+
+    forecastCards[index].children[1].textContent = `Min: ${Math.floor(
       weatherArrayInfo.main.temp_min
     )}℃`
-    card.children[2].textContent = `Max: ${Math.floor(
+    forecastCards[index].children[2].textContent = `Max: ${Math.floor(
       weatherArrayInfo.main.temp_max
     )}℃`
-    card.children[3].textContent = `Wind: ${weatherArrayInfo.wind.speed}MPH`
-    card.children[4].textContent = `Humidity: ${weatherArrayInfo.main.humidity}%`
+    forecastCards[
+      index
+    ].children[3].textContent = `Wind: ${weatherArrayInfo.wind.speed}MPH`
+    forecastCards[
+      index
+    ].children[4].textContent = `Humidity: ${weatherArrayInfo.main.humidity}%`
   })
 }
