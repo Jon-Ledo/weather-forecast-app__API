@@ -2,6 +2,8 @@
 let weatherInfoData = []
 const value = document.querySelector('#city')
 const btn = document.querySelector('button')
+// const cityInput = document.getElementById('city')
+const historyComponent = document.getElementById('historyComponent')
 let city
 const today = moment()
 const currentCalendarDay = today.format('dddd MMMM Do YYYY')
@@ -10,6 +12,7 @@ const currentCalendarDay = today.format('dddd MMMM Do YYYY')
 // default load info for Toronto
 window.addEventListener('DOMContentLoaded', () => {
   getData('Toronto')
+  createSearchHistoryBtn('Toronto')
 })
 
 btn.addEventListener('click', () => {
@@ -17,17 +20,28 @@ btn.addEventListener('click', () => {
   getData(city)
 })
 
-// functions
+// FUNCTIONS
 function getUserInput() {
   const removeOldData = weatherInfoData.pop()
   const input = value.value
+
+  createSearchHistoryBtn(input)
   return input
+}
+
+function createSearchHistoryBtn(input) {
+  const btn = document.createElement('button')
+  btn.setAttribute('type', 'submit')
+  btn.textContent = input
+
+  historyComponent.appendChild(btn)
 }
 
 function getData(city) {
   const urlInput = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=c5d74192f81b74ae39527badb8dc8534&units=metric`
   const forecastUrlInput = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c5d74192f81b74ae39527badb8dc8534&units=metric`
 
+  // get the same day forecast
   fetch(urlInput)
     .then((response) => response.json())
     .then((data) => {
@@ -36,6 +50,7 @@ function getData(city) {
       displayText(weatherInfoData)
     })
 
+  // Get the 5 day forecast
   fetch(forecastUrlInput)
     .then((response) => response.json())
     .then((forecastData) => {
@@ -48,7 +63,7 @@ function getData(city) {
           forecastArrayToDisplay.push(fc)
         }
       })
-      console.log(forecastArrayToDisplay)
+
       displayForecastInfo(forecastArrayToDisplay)
       displayForecastIcons(forecastArrayToDisplay)
     })
