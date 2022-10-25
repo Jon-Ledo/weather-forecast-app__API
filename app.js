@@ -1,8 +1,6 @@
 // VARIABLES
-let weatherInfoData = []
 const value = document.querySelector('#city')
 const btn = document.querySelector('button')
-// const cityInput = document.getElementById('city')
 const historyComponent = document.getElementById('historyComponent')
 let city
 const today = moment()
@@ -12,7 +10,7 @@ const currentCalendarDay = today.format('dddd MMMM Do YYYY')
 // default load info for Toronto
 window.addEventListener('DOMContentLoaded', () => {
   getData('Toronto')
-  createSearchHistoryBtn('Toronto')
+  createSearchHistoryBtn('toronto')
 })
 
 btn.addEventListener('click', () => {
@@ -22,8 +20,7 @@ btn.addEventListener('click', () => {
 
 // FUNCTIONS
 function getUserInput() {
-  const removeOldData = weatherInfoData.pop()
-  const input = value.value
+  const input = value.value.toLowerCase()
 
   createSearchHistoryBtn(input)
   return input
@@ -37,6 +34,9 @@ function createSearchHistoryBtn(input) {
   btn.setAttribute('type', 'submit')
   btn.setAttribute('id', input)
   btn.textContent = input
+  btn.addEventListener('click', (e) => {
+    getData(e.target.id)
+  })
 
   // create array to manipulate btns
   const historyBtns = Array.from(historyComponent.children)
@@ -57,13 +57,15 @@ function createSearchHistoryBtn(input) {
 
 function getData(city) {
   const urlInput = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=c5d74192f81b74ae39527badb8dc8534&units=metric`
+
   const forecastUrlInput = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c5d74192f81b74ae39527badb8dc8534&units=metric`
 
   // get the same day forecast
   fetch(urlInput)
     .then((response) => response.json())
     .then((data) => {
-      weatherInfoData.push(data)
+      const weatherInfoData = [data]
+
       displayIcon(weatherInfoData)
       displayText(weatherInfoData)
     })
