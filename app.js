@@ -135,6 +135,7 @@ function displayText(weatherArray) {
   const humidity = document.querySelector('#humidity')
   const winds = document.querySelector('#winds')
   const tempFeelsLike = document.querySelector('#tempFeelsLike')
+  const uvIndex = document.querySelector('#uvIndex')
 
   cityName.textContent = weatherArrayInfo.name
   currentDate.textContent = currentCalendarDay
@@ -144,6 +145,8 @@ function displayText(weatherArray) {
   humidity.textContent = `${weatherArrayInfo.main.humidity}%`
   winds.textContent = `${weatherArrayInfo.wind.speed}MPH`
   tempFeelsLike.textContent = `${Math.floor(weatherArrayInfo.main.feels_like)}℃`
+  // NOTE: Free version of API does not provide this info
+  // uvIndex.textContent = weatherArrayInfo.uvIndex
 }
 
 function displayForecastInfo(weatherArray) {
@@ -170,4 +173,17 @@ function displayForecastInfo(weatherArray) {
       index
     ].children[4].textContent = `Humidity: ${weatherArrayInfo.main.humidity}%`
   })
+}
+
+// NOTE: Skeleton of what code would look like if API offered uv index information
+// update uv index color
+const uvIndex = document.querySelector('.uv-index')
+function uvIndexColor() {
+  if (uvIndex < 0.5) {
+    uvIndex.style.color = green
+  } else if (uvIndex > 0.5 && uvIndex < 0.99) {
+    uvIndex.style.color = orange
+  } else {
+    uvIndex.style.color = red
+  }
 }
