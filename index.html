@@ -42,23 +42,23 @@
         </div>
 
         <div class="history-container">
-          <button type="button">
-            View previous searches
-          </button>
-          <article class="history-component">
-            <p>city 1</p>
+          <!-- <button type="button">Clear previous searches</button> -->
+          <article class="history-component mb-4" id="historyComponent">
+            <!-- search history generates here -->
           </article>
         </div>
       </section>
       <!-- END OF INPUT -->
 
       <!-- 1 DAY WEATHER INFO -->
-      <section class="card col-6">
+      <section class="card col-md-8 col-lg-6 col-12">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center">
             <div class="card-title-container">
               <h3 class="card-title" id="cityName">Toronto</h3>
-              <p class="card-subtitle text-muted fs-6 text" id="currentDate">Wednesday, September 29, 2022</p>
+              <p class="card-subtitle text-muted fs-6 text" id="currentDate">
+                Wednesday, September 29, 2022
+              </p>
             </div>
 
             <i class="card-icon" id="icon"></i>
@@ -81,7 +81,11 @@
             <h5 class="card-title">Feels like</h5>
             <h6 class="card-subtitle" id="tempFeelsLike">100</h6>
           </div>
-        </foot>
+          <div>
+            <h5 class="card-title">Humidex</h5>
+            <h6 class="card-subtitle" id="humidex">0.40</h6>
+          </div>
+        </footer>
       </section>
       <!-- END OF 1 DAY WEATHER INFO -->
 
@@ -93,53 +97,52 @@
             <i class="card-icon"></i>
             <div class="card-body">
               <h5 class="card-title fs-6 text">Sept. 30, 2022</h5>
-              <p class="card-text">Min: 11℃</p> 
-              <p class="card-text">Max: 16℃</p> 
-              <p class="card-text">Wind: 10MPH</p> 
-              <p class="card-text">Humidity: 55</p> 
+              <p class="card-text">Min: 11℃</p>
+              <p class="card-text">Max: 16℃</p>
+              <p class="card-text">Wind: 10MPH</p>
+              <p class="card-text">Humidity: 55</p>
             </div>
           </div>
           <div class="card">
             <i class="card-icon"></i>
             <div class="card-body">
               <h5 class="card-title fs-6 text">Sept. 30, 2022</h5>
-              <p class="card-text">Min: 11℃</p> 
-              <p class="card-text">Max: 16℃</p> 
-              <p class="card-text">Wind: 10MPH</p> 
-              <p class="card-text">Humidity: 55</p> 
-            </div>
-          </div>
-          <div class="card">
-           <i class="card-icon"></i>
-            <div class="card-body">
-              <h5 class="card-title fs-6 text">Sept. 30, 2022</h5>
-              <p class="card-text">Min: 11℃</p> 
-              <p class="card-text">Max: 16℃</p> 
-              <p class="card-text">Wind: 10MPH</p> 
-              <p class="card-text">Humidity: 55</p> 
+              <p class="card-text">Min: 11℃</p>
+              <p class="card-text">Max: 16℃</p>
+              <p class="card-text">Wind: 10MPH</p>
+              <p class="card-text">Humidity: 55</p>
             </div>
           </div>
           <div class="card">
             <i class="card-icon"></i>
             <div class="card-body">
               <h5 class="card-title fs-6 text">Sept. 30, 2022</h5>
-              <p class="card-text">Min: 11℃</p> 
-              <p class="card-text">Max: 16℃</p> 
-              <p class="card-text">Wind: 10MPH</p> 
-              <p class="card-text">Humidity: 55</p> 
+              <p class="card-text">Min: 11℃</p>
+              <p class="card-text">Max: 16℃</p>
+              <p class="card-text">Wind: 10MPH</p>
+              <p class="card-text">Humidity: 55</p>
             </div>
           </div>
           <div class="card">
             <i class="card-icon"></i>
             <div class="card-body">
               <h5 class="card-title fs-6 text">Sept. 30, 2022</h5>
-              <p class="card-text">Min: 11℃</p> 
-              <p class="card-text">Max: 16℃</p> 
-              <p class="card-text">Wind: 10MPH</p> 
-              <p class="card-text">Humidity: 55</p> 
+              <p class="card-text">Min: 11℃</p>
+              <p class="card-text">Max: 16℃</p>
+              <p class="card-text">Wind: 10MPH</p>
+              <p class="card-text">Humidity: 55</p>
             </div>
           </div>
-
+          <div class="card">
+            <i class="card-icon"></i>
+            <div class="card-body">
+              <h5 class="card-title fs-6 text">Sept. 30, 2022</h5>
+              <p class="card-text">Min: 11℃</p>
+              <p class="card-text">Max: 16℃</p>
+              <p class="card-text">Wind: 10MPH</p>
+              <p class="card-text">Humidity: 55</p>
+            </div>
+          </div>
         </div>
       </section>
       <!-- END OF 5 DAY WEATHER INFO -->
