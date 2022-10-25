@@ -1,3 +1,41 @@
+body {
+  background-color: #e3f4f5;
+}
+
+.form-control {
+  background-color: #e3f4f5;
+  border: 1px solid grey;
+}
+
 .history-btn {
   text-transform: capitalize;
+  border-radius: 5px;
+  background-color: #80d1d3;
+  border: none;
+  padding: 5px 15px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  transition: all 0.3s;
+}
+
+.history-btn:hover {
+  background-color: #95b0b1;
+}
+
+.card-body,
+.card-icon {
+  background-color: #bdc0f0;
+}
+
+.card-footer {
+  background-color: #878bb8;
+}
+
+.uv-index-green {
+  color: #47f529;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px #26571d;
 }
