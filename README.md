@@ -1,4 +1,10 @@
-# 06 Server-Side APIs: Weather Dashboard
+# Weather Forecast Dashboard (with API
+
+## Links
+
+- Live Site URL: [live site](https://jon-ledo.github.io/weather-forecast-app__API/)
+- Repo: [repo](https://github.com/Jon-Ledo/weather-forecast-app__API)
+- [link to Minesweeper API via rapidAPI](https://rapidapi.com/anpham.aph/api/minesweeper1/)
 
 ## Your Task
 
