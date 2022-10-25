@@ -2,7 +2,7 @@
 
 ## Links
 
-- Live Site URL: [live site](https://jon-ledo.github.io/weather-forecast-app__API/)
+- Live Site URL: [live site](https://tourmaline-kheer-8d8df2.netlify.app/)
 - Repo: [repo](https://github.com/Jon-Ledo/weather-forecast-app__API)
 - [openweathermap API, current day data](https://openweathermap.org/current)
 - [openweathermap API, forecast data](https://openweathermap.org/forecast5)
