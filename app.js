@@ -70,7 +70,7 @@ function createSearchHistoryBtn(input) {
 
 // fetch data
 function getData(city) {
-  const urlInput = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=c5d74192f81b74ae39527badb8dc8534&units=metric`
+  const urlInput = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=c5d74192f81b74ae39527badb8dc8534&units=metric`
 
   const forecastUrlInput = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=c5d74192f81b74ae39527badb8dc8534&units=metric`
 
