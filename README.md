@@ -9,3 +9,17 @@
 
 ## Preview
 
+![preview of weather dashboard](./Assets/weatherAPI-preview.JPG)
+
+## Tech Used
+
+- HTML
+- CSS
+- Bootstrap
+- JavaScript
+- 3rd party API's
+  - openweathermap API (1day forecast): [link](https://openweathermap.org/current)
+  - openweathermap API (5day forecast): [link](https://openweathermap.org/forecast5)
+  - momentJS: [link](https://momentjs.com/)
+
+## Description
