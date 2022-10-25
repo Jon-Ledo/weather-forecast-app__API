@@ -29,12 +29,30 @@ function getUserInput() {
   return input
 }
 
+// search history func
 function createSearchHistoryBtn(input) {
+  // create a button
   const btn = document.createElement('button')
+  btn.classList.add('history-btn')
   btn.setAttribute('type', 'submit')
+  btn.setAttribute('id', input)
   btn.textContent = input
 
-  historyComponent.appendChild(btn)
+  // create array to manipulate btns
+  const historyBtns = Array.from(historyComponent.children)
+
+  if (historyBtns.length === 0) {
+    historyComponent.appendChild(btn)
+  }
+
+  // filter to make sure no duplicate btns are made
+  const check = historyBtns.filter((btn) => {
+    return btn.id === input
+  })
+
+  if (check.length === 0) {
+    historyComponent.appendChild(btn)
+  }
 }
 
 function getData(city) {
@@ -54,7 +72,6 @@ function getData(city) {
   fetch(forecastUrlInput)
     .then((response) => response.json())
     .then((forecastData) => {
-      console.log(forecastData)
       const forecastArrayData = forecastData.list
 
       const forecastArrayToDisplay = []
