@@ -1,16 +1,27 @@
-// VARIABLES
+// ***********
+// VARIABLES *
+// ***********
 const value = document.querySelector('#city')
+const form = document.querySelector('form')
 const btn = document.querySelector('button')
 const historyComponent = document.getElementById('historyComponent')
 let city
 const today = moment()
 const currentCalendarDay = today.format('dddd MMMM Do YYYY')
 
-// EVENTS
+// *********
+// EVENTS **
+// *********
 // default load info for Toronto
 window.addEventListener('DOMContentLoaded', () => {
   getData('Toronto')
   createSearchHistoryBtn('toronto')
+})
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault()
+  city = getUserInput()
+  getData(city)
 })
 
 btn.addEventListener('click', () => {
@@ -18,7 +29,9 @@ btn.addEventListener('click', () => {
   getData(city)
 })
 
-// FUNCTIONS
+// ************
+// FUNCTIONS **
+// ************
 function getUserInput() {
   const input = value.value.toLowerCase()
 
@@ -55,6 +68,7 @@ function createSearchHistoryBtn(input) {
   }
 }
 
+// fetch data
 function getData(city) {
   const urlInput = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=c5d74192f81b74ae39527badb8dc8534&units=metric`
 
